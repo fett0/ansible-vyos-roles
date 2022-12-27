@@ -1,0 +1,22 @@
+- name: Upload a configuration to VyOS
+  # upload a configuration
+  ansible.netcommon.net_put:
+    dest: "/tmp/{{ inventory_hostname }}_config.boot"
+    mode: text
+    protocol: sftp
+    src: "templates/firewall-empty.cfg"
+
+- name: Configure VyOS via file upload
+  vyos.vyos.vyos_command:
+    commands:
+      # enter into configuration mode
+      - configure
+      # load configuration commands from a file
+      - "load /tmp/{{ inventory_hostname }}_config.boot"
+      # commit configuration
+      - commit
+      # save configuration
+      - save
+      # exit from configuration mode
+      - exit
+
