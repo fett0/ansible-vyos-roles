@@ -1,0 +1,10 @@
+    - name:  show templating results
+      set_fact:
+        rendered_template: "{{ lookup('template', 'firewall-set.j2') }}"
+    - debug:
+         var: rendered_template  
+    
+    - name: Configure Firewall
+      vyos_config:
+        src: templates/firewall-set.j2
+

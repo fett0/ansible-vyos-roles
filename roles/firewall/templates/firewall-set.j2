@@ -1,0 +1,16 @@
+set firewall group address-group LAN address {{ lan_add1 }} 
+set firewall group address-group LAN address {{ lan_add2 }} 
+set firewall name LAN-LOCAL default-action drop
+set firewall name LAN-LOCAL rule 10 protocol udp
+set firewall name LAN-LOCAL rule 10 destination port 53
+set firewall name LAN-LOCAL rule 10 action accept
+set firewall name LAN-LOCAL rule 20 protocol tcp
+set firewall name LAN-LOCAL rule 20 destination port 22
+set firewall name LAN-LOCAL rule 20 source address 192.168.100.0/24
+set firewall name LAN-LOCAL rule 20 action accept
+set firewall name LAN-IN default-action accept
+set firewall name LAN-IN rule 10 source group address-group LAN
+set firewall name LAN-IN rule 10 action drop
+set interfaces ethernet eth0 description 'WAN-Ansible'
+set interfaces ethernet eth2 firewall in name 'LAN-IN'
+set interfaces ethernet eth2 firewall local name 'LAN-LOCAL'

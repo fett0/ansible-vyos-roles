@@ -1,0 +1,5 @@
+---
+## Imports differetes tasks to ansible
+  - name: Apply import firewall
+    import_tasks: firewall-dp.yml
+

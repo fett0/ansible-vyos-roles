@@ -1,0 +1,14 @@
+---
+
+- name: VyOS deployment playbook
+  hosts: rvyos
+  connection: network_cli
+  gather_facts: 'no'
+  roles:
+    - role : firewall
+    - role : nat
+      # Execute the task only if the nat_config is enable on group_vars.
+      when: nat_config == "enabled"
+    - role : backup
+      # Execute the task only if the bk_config is enable on group_vars.
+      when: bk_config == "enabled"

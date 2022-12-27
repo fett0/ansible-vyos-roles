@@ -1,0 +1,12 @@
+---
+## main backup playbook
+- name: backup template
+  vyos.vyos.vyos_config:
+    backup: yes
+    backup_options:
+      filename: 
+      dir_path: /home/fett/ansible-work/roles/backup/templates/
+
+
+
+

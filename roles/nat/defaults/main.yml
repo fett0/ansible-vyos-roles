@@ -1,0 +1,9 @@
+---
+#### variables to nat
+interfaces:
+  - vyos_if: "eth0"
+    desc: "Configure by Ansible"
+    ipv4_addr: "dhcp"
+    enabled: "true"
+    nat:
+      type: "outside"

@@ -1,0 +1,10 @@
+## tasks file for nat
+- name:  show templating results
+  set_fact:
+    rendered_template: "{{ lookup('template', 'nat-overload.j2') }}"
+- debug:
+     var: rendered_template 
+## Configure nat mesquered
+- name: Configure NAT Overload
+  vyos_config:
+    src: nat-overload.j2
